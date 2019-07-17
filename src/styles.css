@@ -1,0 +1,38 @@
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+@import '~@ngx-share/button/themes/default/default-theme';
+/* Mobile */
+@media (min-width:320px) { 
+    body {
+        background:lightgray;
+    }
+  }
+  @media (min-width:481px) { 
+    body {
+        background:lightgray;
+    }
+  }
+  /* ipad */
+  @media (min-width:768px) and (min-height:701px) { 
+    body {
+        background:lightgray;
+    }
+  }
+  /* tablet */
+  @media (min-width:961px) { 
+    body {
+        padding: 2em 23em;
+        background:lightgray;
+    }
+  }
+  @media (min-width:1025px) { 
+    body {
+        padding: 2em 23em;
+        background:lightgray;
+    }
+  }
+  @media (min-width:1281px) { 
+    body {
+        padding: 2em 23em;
+        background:lightgray;
+    }
+  }

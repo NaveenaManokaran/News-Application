@@ -1,0 +1,84 @@
+<mat-toolbar color="primary">
+  <button mat-button (click)="sidenav.open ()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>News</span>
+  <span class="spacer"></span>
+  <button mat-button [matMenuTriggerFor]="appMenu">
+    <mat-icon>settings</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu #appMenu="matMenu">
+  <!-- <button mat-menu-item> Change Theme </button> -->
+  <button mat-menu-item data-toggle="modal" data-target="#myModal"> Help </button>
+</mat-menu>
+<mat-sidenav-container class="news-container">
+  <mat-sidenav #sidenav class="news-sidenav">
+    <mat-list class="list-nav">
+      <mat-list-item class="list-item" *ngFor="let source of mSources" (click)="searchArticles(source.id);sidenav.close();">
+        <div mat-card-avatar [ngStyle]="{'background-image': 'url('+ config +'/assets/images/'+ source.id +'.png)'}" class="news-header-image"></div>
+        <span class="source-name"> {{source.name}}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-card class="news-card" *ngFor="let article of mArticles">
+    <mat-card-header>
+      <div mat-card-avatar [ngStyle]="{'background-image': 'url('+ config +'/assets/images/'+ article.source.id +'.png)'}" class="news-header-image"></div>
+      <mat-card-title class="title">{{article.title}}</mat-card-title>
+      <mat-card-subtitle>{{article.source.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image class="img-article" src={{article.urlToImage}} alt="">
+    <mat-card-content>
+      <p>
+        {{article.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <!-- <button mat-button color="primary"><mat-icon>thumb_up_alt</mat-icon> 12 Likes</button>
+      <button mat-button color="primary"><mat-icon>comment</mat-icon> Comments</button> -->
+      <!-- <button mat-button color="primary"><mat-icon>share</mat-icon> Share</button> -->
+      <share-button button="facebook" text="Share" [showText]="true" url={{article.url}}></share-button>
+      <share-button button="twitter" text="Tweet" [showText]="true" url={{article.url}}></share-button>
+      <share-button button="pinterest" text="pin" image={{article.urlToImage}} url={{article.url}}></share-button>
+      <share-button button="linkedin" text="Post" [showText]="true" url={{article.url}}></share-button>
+      <share-button button="whatsapp" text="Share" [showText]="true" url={{article.url}}></share-button>
+      <br>
+      <a mat-button color="primary" href={{article.url}} target="_blank">
+        <mat-icon>visibility</mat-icon> Read More
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</mat-sidenav-container>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Help</h4>
+      </div>
+      <div class="modal-body">
+        <div class="sibling-nav">
+        <ul class="sibling-list">
+          <li><span class="sibling-link sibling-link--current"><svg class="article" viewBox="0 0 24 24">
+                <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"></path>
+                <path d="M0 0h24v24H0z" fill="none"></path>
+              </svg>Get the new News from your favourite pages</span></li>
+          <li><span class="sibling-link"><svg class="article"
+                viewBox="0 0 24 24">
+                <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"></path>
+                <path d="M0 0h24v24H0z" fill="none"></path>
+              </svg>Share stories from this News page</span></li>
+          <li><span class="sibling-link"><svg class="article"
+                viewBox="0 0 24 24">
+                <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"></path>
+                <path d="M0 0h24v24H0z" fill="none"></path>
+              </svg>Read News in detail</span></li>
+        </ul>
+        Visit<a style="color: purple;" href="https://newsapi.org/"> https://newsapi.org/ </a>for api
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-scrollbar></app-scrollbar>
